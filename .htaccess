@@ -1,0 +1,17 @@
+RewriteEngine on
+
+RewriteRule ^guitar-admin$ http://localhost/learn/admin.guitar/$1 [R=301,L]
+
+# Rewrite all other URLs to index.php?[URL]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule .* index.php?querysystemurl=$0 [QSA]
+
+Options -Indexes
+
+<FilesMatch "\.(php|twig|log)$">
+	Deny from all
+</FilesMatch>
+
+<FilesMatch "^index.(php)$">
+	Allow from all
+</FilesMatch>
